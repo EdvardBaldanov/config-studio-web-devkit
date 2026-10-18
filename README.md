@@ -1,6 +1,6 @@
 # Web DevKit Plugin for Config Studio 🌐
 
-Официальный плагин **Web DevKit** для [Config Studio](https://github.com/EdvardBaldanov/Config-Editor).
+Официальный плагин **Web DevKit** для [Config Studio](https://github.com/EdvardBaldanov/config-studio).
 Превращает Config Studio в полноценную среду разработки веб-страниц и PHP-скриптов.
 
 ## 🚀 Возможности
