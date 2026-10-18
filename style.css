@@ -1,0 +1,6 @@
+.web-devkit-container {
+  min-width: 320px;
+}
+.web-devkit-toolbar button {
+  outline: none;
+}
