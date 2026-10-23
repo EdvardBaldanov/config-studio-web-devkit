@@ -127,7 +127,9 @@
 
       const node = {
         id: `html_${idCounter++}`,
+        label: label,
         name: label,
+        type: isHeading || isLandmark ? 'section' : isImportantControl ? 'string' : 'object',
         kind: isHeading || isLandmark ? 'section' : isImportantControl ? 'string' : 'object',
         line: lineNumber,
         children: isSelfClosing ? undefined : []
@@ -165,7 +167,9 @@
       if (nsMatch) {
         outline.push({
           id: `php_${idCounter++}`,
+          label: `namespace ${nsMatch[1].trim()}`,
           name: `namespace ${nsMatch[1].trim()}`,
+          type: 'section',
           kind: 'section',
           line: lineNum
         });
@@ -178,7 +182,9 @@
         const name = classMatch[2];
         currentClassNode = {
           id: `php_${idCounter++}`,
+          label: `${kind} ${name}`,
           name: `${kind} ${name}`,
+          type: 'section',
           kind: 'class',
           line: lineNum,
           children: []
@@ -199,7 +205,9 @@
           const params = methodMatch[4].trim();
           currentClassNode.children.push({
             id: `php_${idCounter++}`,
+            label: `${methodName}(${params.length > 15 ? params.slice(0, 15) + '…' : params})`,
             name: `${methodName}(${params.length > 15 ? params.slice(0, 15) + '…' : params})`,
+            type: 'section',
             kind: 'function',
             line: lineNum
           });
@@ -214,7 +222,9 @@
         if (funcMatch) {
           outline.push({
             id: `php_${idCounter++}`,
+            label: `function ${funcMatch[1]}()`,
             name: `function ${funcMatch[1]}()`,
+            type: 'section',
             kind: 'function',
             line: lineNum
           });
@@ -229,7 +239,9 @@
           return [
             {
               id: `php_symbols_${idCounter++}`,
+              label: '🐘 PHP Символы',
               name: '🐘 PHP Символы',
+              type: 'section',
               kind: 'section',
               line: outline[0].line,
               children: outline

@@ -1,7 +1,7 @@
 {
   "id": "web-devkit",
   "name": "Web DevKit",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "HTML & PHP Live Preview с симуляцией вкладки Chrome, сервер :8085, AST-структура и автодополнение",
   "author": "Config Studio Team",
   "icon": "globe",
