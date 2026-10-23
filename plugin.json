@@ -1,12 +1,47 @@
 {
   "id": "web-devkit",
   "name": "Web DevKit",
-  "version": "1.1.0",
-  "description": "HTML & PHP Live Preview, Embedded Server, Monaco Autocomplete & Web DevTools",
+  "version": "1.2.0",
+  "description": "HTML & PHP Live Preview с симуляцией вкладки Chrome, сервер :8085, AST-структура и автодополнение",
   "author": "Config Studio Team",
   "icon": "globe",
   "entry": "main.js",
   "css": "style.css",
-  "permissions": ["ui.panels", "terminal.exec", "network.bind"],
-  "fileMatches": [".html", ".htm", ".php", ".phtml", ".css", ".js"]
+  "permissions": [
+    "ui.panels",
+    "terminal.exec",
+    "network.bind",
+    "toolbar",
+    "contextmenu"
+  ],
+  "fileMatches": [
+    ".html",
+    ".htm",
+    ".xhtml",
+    ".php",
+    ".phtml",
+    ".css",
+    ".js",
+    ".svg"
+  ],
+  "locales": {
+    "ru": {
+      "name": "Web DevKit",
+      "description": "Живой предпросмотр HTML/PHP с вкладкой браузера Chrome, веб-сервер :8085, AST-структура и автодополнение Monaco"
+    },
+    "en": {
+      "name": "Web DevKit",
+      "description": "HTML & PHP Live Preview with Chrome browser tab simulation, :8085 server, AST structure, and Monaco completions"
+    }
+  },
+  "actionToolbar": {
+    "primaryAction": "preview",
+    "targets": [
+      { "id": "preview", "label": "Live Preview" },
+      { "id": "server", "label": "Start Server :8085" },
+      { "id": "browser", "label": "Open in Browser" }
+    ],
+    "hotkey": "F5"
+  },
+  "minAppVersion": "1.9.0"
 }
