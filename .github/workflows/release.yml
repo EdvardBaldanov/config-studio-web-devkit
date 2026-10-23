@@ -1,0 +1,46 @@
+﻿name: Build and Release Plugin Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install cspkg packager
+        run: |
+          sudo curl -sSL -f https://github.com/EdvardBaldanov/config-studio-plugin-docs/releases/download/v1.0.0/cspkg-linux-amd64 -o /usr/local/bin/cspkg
+          sudo chmod +x /usr/local/bin/cspkg
+          cspkg version
+
+      - name: Compile .cspkg binary package
+        run: |
+          PLUGIN_ID=$(jq -r '.id' plugin.json)
+          PLUGIN_VERSION=$(jq -r '.version' plugin.json)
+          echo "Building package for ${PLUGIN_ID} v${PLUGIN_VERSION}..."
+          cspkg pack . "${PLUGIN_ID}.cspkg"
+          cspkg inspect "${PLUGIN_ID}.cspkg"
+
+      - name: Create ZIP fallback
+        run: |
+          PLUGIN_ID=$(jq -r '.id' plugin.json)
+          zip -r "${PLUGIN_ID}.zip" . -x "*.git*" "*.github*" "*.cspkg" "*.zip"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            *.cspkg
+            *.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
