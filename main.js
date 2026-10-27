@@ -326,18 +326,22 @@
   // ==========================================================================
   const WEB_EXTENSIONS = ['.html', '.htm', '.xhtml', '.php', '.phtml', '.svg', '.vue'];
 
+  function isWebFile(file) {
+    if (!file) return false;
+    const name = typeof file === 'string' ? file : (file.name || file.path || '');
+    if (!name) return false;
+    const lower = name.toLowerCase();
+    return WEB_EXTENSIONS.some((ext) => lower.endsWith(ext));
+  }
+
   window.ConfigStudio.registerToolbarButton({
     id: 'web-devkit-preview-btn',
     pluginId: pluginId,
     label: 'Live Preview',
     title: 'Web DevKit — Живой предпросмотр HTML/PHP с браузерной вкладкой Chrome',
     icon: 'globe',
-    fileMatches: WEB_EXTENSIONS,
-    visible: (file) => {
-      if (!file || !file.name) return false;
-      const ext = '.' + file.name.split('.').pop().toLowerCase();
-      return WEB_EXTENSIONS.includes(ext);
-    },
+    fileMatches: ['*.html', '*.htm', '*.xhtml', '*.php', '*.phtml', '*.svg', '*.vue', '.html', '.htm', '.xhtml', '.php', '.phtml', '.svg', '.vue'],
+    visible: (file) => isWebFile(file),
     onClick: () => togglePreview()
   });
 
