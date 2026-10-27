@@ -324,13 +324,20 @@
   // ==========================================================================
   // 3. UI Buttons, Context Menu and Toolbar Integration
   // ==========================================================================
+  const WEB_EXTENSIONS = ['.html', '.htm', '.xhtml', '.php', '.phtml', '.svg', '.vue'];
+
   window.ConfigStudio.registerToolbarButton({
     id: 'web-devkit-preview-btn',
     pluginId: pluginId,
     label: 'Live Preview',
     title: 'Web DevKit — Живой предпросмотр HTML/PHP с браузерной вкладкой Chrome',
     icon: 'globe',
-    visible: () => true,
+    fileMatches: WEB_EXTENSIONS,
+    visible: (file) => {
+      if (!file || !file.name) return false;
+      const ext = '.' + file.name.split('.').pop().toLowerCase();
+      return WEB_EXTENSIONS.includes(ext);
+    },
     onClick: () => togglePreview()
   });
 
