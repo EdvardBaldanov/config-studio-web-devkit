@@ -1,5 +1,5 @@
 /**
- * Web DevKit Plugin for Config Studio v1.3.1
+ * Web DevKit Plugin for Config Studio v1.3.2
  * Provides Live HTML/PHP Preview with Browser Chrome Simulation,
  * AST Outline parsers, Monaco autocompletions and host server integration.
  */
@@ -667,5 +667,5 @@
     }
   });
 
-  console.log('[WebDevKit v1.3.1] Plugin loaded with Chrome Browser Preview and AST Parsers.');
+  console.log('[WebDevKit v1.3.2] Plugin loaded with Chrome Browser Preview and AST Parsers.');
 })();
