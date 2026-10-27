@@ -1,36 +1,30 @@
 {
   "id": "web-devkit",
-  "name": "Web DevKit",
-  "version": "1.2.1",
+  "name": "Web DevKit v1.3.1",
+  "version": "1.3.1",
   "description": "HTML & PHP Live Preview с симуляцией вкладки Chrome, сервер :8085, AST-структура и автодополнение",
   "author": "Config Studio Team",
   "icon": "globe",
   "entry": "main.js",
-  "css": "style.css",
-  "permissions": [
-    "ui.panels",
-    "terminal.exec",
-    "network.bind",
-    "toolbar",
-    "contextmenu"
-  ],
-  "fileMatches": [
-    ".html",
-    ".htm",
-    ".xhtml",
-    ".php",
-    ".phtml",
-    ".css",
-    ".js",
-    ".svg"
+  "styles": ["style.css"],
+  "capabilities": [
+    "network:listen",
+    "network:fetch",
+    "process:exec",
+    "fs:read",
+    "fs:write",
+    "editor:outline",
+    "editor:autocomplete",
+    "ui:split-panel",
+    "ui:toolbar-button"
   ],
   "locales": {
     "ru": {
-      "name": "Web DevKit",
+      "name": "Web DevKit v1.3.1",
       "description": "Живой предпросмотр HTML/PHP с вкладкой браузера Chrome, веб-сервер :8085, AST-структура и автодополнение Monaco"
     },
     "en": {
-      "name": "Web DevKit",
+      "name": "Web DevKit v1.3.1",
       "description": "HTML & PHP Live Preview with Chrome browser tab simulation, :8085 server, AST structure, and Monaco completions"
     }
   },

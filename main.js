@@ -1,5 +1,5 @@
 /**
- * Web DevKit Plugin for Config Studio v1.2.0
+ * Web DevKit Plugin for Config Studio v1.3.1
  * Provides Live HTML/PHP Preview with Browser Chrome Simulation,
  * AST Outline parsers, Monaco autocompletions and host server integration.
  */
@@ -15,10 +15,14 @@
   let serverPort = 8085;
   let deviceMode = 'responsive'; // 'responsive', 'desktop', 'tablet', 'mobile'
 
-  const isWebFile = (path) => {
-    if (!path) return false;
-    const lower = path.toLowerCase();
-    return lower.endsWith('.html') || lower.endsWith('.htm') || lower.endsWith('.xhtml') || lower.endsWith('.php') || lower.endsWith('.phtml') || lower.endsWith('.svg');
+  const WEB_EXTENSIONS = ['.html', '.htm', '.xhtml', '.php', '.phtml', '.svg', '.vue'];
+
+  const isWebFile = (file) => {
+    if (!file) return false;
+    const name = typeof file === 'string' ? file : (file.name || file.path || '');
+    if (!name) return false;
+    const lower = name.toLowerCase();
+    return WEB_EXTENSIONS.some((ext) => lower.endsWith(ext));
   };
 
   // ==========================================================================
@@ -324,16 +328,6 @@
   // ==========================================================================
   // 3. UI Buttons, Context Menu and Toolbar Integration
   // ==========================================================================
-  const WEB_EXTENSIONS = ['.html', '.htm', '.xhtml', '.php', '.phtml', '.svg', '.vue'];
-
-  function isWebFile(file) {
-    if (!file) return false;
-    const name = typeof file === 'string' ? file : (file.name || file.path || '');
-    if (!name) return false;
-    const lower = name.toLowerCase();
-    return WEB_EXTENSIONS.some((ext) => lower.endsWith(ext));
-  }
-
   window.ConfigStudio.registerToolbarButton({
     id: 'web-devkit-preview-btn',
     pluginId: pluginId,
@@ -673,5 +667,5 @@
     }
   });
 
-  console.log('[WebDevKit v1.2.0] Plugin loaded with Chrome Browser Preview and AST Parsers.');
+  console.log('[WebDevKit v1.3.1] Plugin loaded with Chrome Browser Preview and AST Parsers.');
 })();
