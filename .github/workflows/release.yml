@@ -1,4 +1,4 @@
-﻿name: Build and Release Plugin Package
+name: Build and Release Plugin Package
 
 on:
   push:
@@ -27,7 +27,8 @@ jobs:
           PLUGIN_ID=$(jq -r '.id' plugin.json)
           PLUGIN_VERSION=$(jq -r '.version' plugin.json)
           echo "Building package for ${PLUGIN_ID} v${PLUGIN_VERSION}..."
-          cspkg pack . "${PLUGIN_ID}.cspkg"
+          cspkg pack . -o "${PLUGIN_ID}.cspkg"
+          cp "${PLUGIN_ID}.cspkg" "${PLUGIN_ID}-${PLUGIN_VERSION}.cspkg"
           cspkg inspect "${PLUGIN_ID}.cspkg"
 
       - name: Create ZIP fallback
